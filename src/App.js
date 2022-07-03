@@ -1,25 +1,13 @@
-import { useState } from 'react';
 import './App.css';
-import Form from './Components/Form';
-import TodoList from './Components/TodoList';
-
-
-
+import AddTodo from './Components/AddTodo';
+// import Navbar from './Components/Navbar';
 function App() {
-  const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
+
   return (
-    <div className='App'>
-      <header>
-        <h1>Todo List</h1>
-      </header>
-      <Form
-        setInputText={setInputText}
-        todos={todos}
-        setTodos={setTodos}
-        inputText={inputText}
-      ></Form>
-      <TodoList setTodos={setTodos} todos={todos}></TodoList>
+    <div>
+      {/* <Navbar></Navbar> */}
+      <h1 className='text-3xl font-bold'>To Do List</h1>
+      <AddTodo></AddTodo>
     </div>
   );
 }
