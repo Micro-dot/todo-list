@@ -19,15 +19,50 @@ const AddTodo = () => {
     }
     const handleAddTask = event => {
         event.preventDefault();
-        let taskInfo = {
-            name: taskName,
-            type: taskType,
-            status: taskStatus,
-        }
-        console.log(taskInfo);
         setTaskName('');
         setTaskType('');
         setTaskStatus('');
+
+        // let name = [];
+        // let type = [];
+        // let status = [];
+
+        // const todo = {
+        //     name: taskName,
+        //     type: taskType,
+        //     status: taskStatus
+        // }
+        // console.log(todo);
+        // const todoList = localStorage.getItem('todos');
+        // console.log(todoList);
+        // if (!todoList) {
+        //     localStorage.setItem('todos', JSON.stringify([todo]));
+        // }
+        // else {
+        //     const gettodo = JSON.parse(localStorage.getItem('todos'));
+        //     console.log(gettodo);
+        //     gettodo.push(todo);
+        //     localStorage.setItem('todos', JSON.stringify(gettodo));
+        // }
+
+        const todo = {
+            name: taskName,
+            type: taskType,
+            status: taskStatus
+        }
+        console.log(todo);
+        const todoList = localStorage.getItem('todos');
+        console.log(todoList);
+        if (!todoList) {
+            localStorage.setItem('todos', JSON.stringify([todo]));
+        }
+        else {
+            const gettodo = JSON.parse(localStorage.getItem('todos'));
+            console.log(gettodo);
+            gettodo.push(todo);
+            localStorage.setItem('todos', JSON.stringify(gettodo));
+        }
+
     }
     return (
         <div className='flex flex-col items-center rounded'>
