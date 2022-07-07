@@ -96,7 +96,6 @@ const AddTodo = () => {
                 {/* Task Status */}
                 <select name='status' value={taskStatus} className='p-1 rounded-md mt-1' onChange={handleTaskStatus}> Select
                     <option className="rounded" hidden></option>
-                    <option className="rounded">Not Started</option>
                     <option className="rounded">In Progress</option>
                     <option className="rounded">Completed</option>
                 </select><br />
@@ -110,21 +109,38 @@ const AddTodo = () => {
             {/* Task List */}
             <table class="min-w-full border-collapse block md:table mt-5">
                 <thead class="block md:table-header-group">
-                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Name</th>
-                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Type</th>
-                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Status</th>
-                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date</th>
+
+                    <tr class="border  border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell"> </th>
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Name</th>
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Type</th>
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell">Task Status</th>
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell">Creating Date</th>
+                        <th class="bg-teal-300 p-2 text-black font-bold md:border md:border-grey-500 text-left block md:table-cell">Action</th>
                     </tr>
                 </thead>
                 <tbody class="block md:table-row-group">
                     {
                         todos.map(todo =>
                             <tr class={(todo.status === 'Completed') ? "bg-green-300 border border-grey-500 md:border-none block md:table-row" : "bg-gray-300 border border-grey-500 md:border-none block md:table-row"}>
+                                <td class="p-2">
+                                    <input type="checkbox" class="w-5 h-5" />
+                                </td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.type}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.status}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.time}</td>
+                                <td>
+                                    <button>
+                                        <svg class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
                             </tr>
                         )
                     }
