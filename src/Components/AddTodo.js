@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// import {  } from 'react';
 
 
 const AddTodo = () => {
@@ -7,12 +7,13 @@ const AddTodo = () => {
     const [taskType, setTaskType] = useState('');
     const [taskStatus, setTaskStatus] = useState('');
     const [todos, setTodos] = useState([]);
+    const [count, setCount] = useState(0);
     useEffect(() => {
         const data = localStorage.getItem('todos');
         if (data) {
             setTodos(JSON.parse(data));
         }
-    }, [{}])
+    }, [count])
 
     // var dateObj = new Date();
     // var month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -22,7 +23,7 @@ const AddTodo = () => {
     // console.log(newdate);
 
     // 8/19/2020, 9:29:51 AM. (date and time in a specific timezone)
-    const time = (new Date().toLocaleDateString("en-US", { 
+    const time = (new Date().toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -40,6 +41,7 @@ const AddTodo = () => {
         setTaskStatus(e.target.value);
     }
     const handleAddTask = event => {
+        console.log("Click");
         event.preventDefault();
         setTaskName('');
         setTaskType('');
@@ -64,8 +66,7 @@ const AddTodo = () => {
             localStorage.setItem('todos', JSON.stringify(gettodo));
             setTodos(gettodo);
         }
-
-
+        setCount(count + 1);
     }
     return (
         <div className='flex flex-col items-center rounded'>
@@ -119,7 +120,7 @@ const AddTodo = () => {
                 <tbody class="block md:table-row-group">
                     {
                         todos.map(todo =>
-                            <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                            <tr class={(todo.status === 'Completed') ? "bg-green-300 border border-grey-500 md:border-none block md:table-row" : "bg-gray-300 border border-grey-500 md:border-none block md:table-row"}>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.name}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.type}</td>
                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{todo.status}</td>
